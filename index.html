@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    .app {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .weather {
+      margin-top: 15px;
+    }
+    .temp {
+      font-size: 32px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <h2>Weather App 🌤</h2>
+  <input type="text" id="city" placeholder="Enter city name">
+  <br>
+  <button onclick="getWeather()">Get Weather</button>
+
+  <div class="weather" id="weather"></div>
+</div>
+
+<script>
+function getWeather() {
+  const city = document.getElementById("city").value;
+  const weatherDiv = document.getElementById("weather");
+
+  if (!city) {
+    weatherDiv.innerHTML = "Please enter a city.";
+    return;
+  }
+
+  // Dummy data for different cities
+  const dummyData = {
+    "london": { name: "London", country: "UK", temp: 15, wind: 12 },
+    "paris": { name: "Paris", country: "France", temp: 16, wind: 8 },
+    "tokyo": { name: "Tokyo", country: "Japan", temp: 22, wind: 5 },
+    "new york": { name: "New York", country: "USA", temp: 18, wind: 10 },
+    "sydney": { name: "Sydney", country: "Australia", temp: 25, wind: 7 }
+  };
+
+  const data = dummyData[city.toLowerCase()] || {
+    name: city,
+    country: "Unknown",
+    temp: 20,
+    wind: 10
+  };
+
+  weatherDiv.innerHTML = `
+    <h3>${data.name}, ${data.country}</h3>
+    <div class="temp">${data.temp}°C</div>
+    <p>Wind: ${data.wind} km/h</p>
+  `;
+}
+</script>
+
+</body>
+</html>
